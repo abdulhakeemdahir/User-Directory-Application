@@ -1,10 +1,12 @@
 import React from "react";
 
+// Search Form Component
 function SearchForm(props) {
 	return (
 		<form>
 			<div className='form-group'>
 				<label htmlFor='search'>Search:</label>
+				{/* Main search input */}
 				<input
 					onChange={props.handleInputChange}
 					value={props.value}
@@ -15,15 +17,18 @@ function SearchForm(props) {
 					id='search'
 				/>
 				<br />
+				{/* Submit search button */}
 				<button onClick={props.handleFormSubmit} className='btn btn-primary'>
 					Search
 				</button>
+				{/* Reload window button */}
 				<button
 					onClick={() => window.location.reload(false)}
 					className='btn btn-warning mx-3'
 				>
 					Reset: Search
 				</button>
+				{/* Sort selections */}
 				<section className='card my-3'>
 					<select onChange={props.handleSort} className='dropdown-item'>
 						<option className='dropdown-item'>Select Sort</option>

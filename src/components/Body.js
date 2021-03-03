@@ -1,3 +1,4 @@
+// My body component
 function Body({ users }) {
 	return (
 		<div className='card'>

@@ -1,11 +1,12 @@
 import Body from "./components/Body";
 import React from "react";
 import Header from "./components/Header";
-// import testUsers from "./utlis/testdata.json";
 import API from "./utlis/API";
 import SearchForm from "./components/SearchForm";
 
+// Created a React Class
 class App extends React.Component {
+	//Set up my contstructor
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -13,28 +14,29 @@ class App extends React.Component {
 			search: "",
 			al: "",
 		};
+		// Binded This to all of my methods
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleFormSubmit = this.handleFormSubmit.bind(this);
 		this.handleSort = this.handleSort.bind(this);
 		this.searchUsers = this.searchUsers.bind(this);
 	}
-
+	// Mounted my initial component
 	componentDidMount() {
 		this.getUsers("25");
 	}
-
+	// API request to get Random users
 	getUsers(query) {
 		API.getUsers(query)
 			.then(res => this.setState({ users: res.data.results }))
 			.catch(err => console.log(err));
 	}
+	// Funciton to search users
 	searchUsers(query) {
 		API.searchName(query)
-			.then(res => console.log(res.data.results))
 			.then(res => this.setState({ users: res.data.results }))
 			.catch(err => console.log(err));
 	}
-
+	// Function to search users by input
 	handleInputChange(event) {
 		const value = event.target.value;
 		const name = event.target.name;
@@ -64,7 +66,7 @@ class App extends React.Component {
 			);
 		this.setState({ users: filteruser });
 	}
-
+	// Function to sort users
 	handleSort() {
 		let sortUser;
 		if (this.state.al === "az") {
@@ -79,7 +81,7 @@ class App extends React.Component {
 			this.setState({ users: sortUser, al: "az" });
 		}
 	}
-
+	// Render function for React
 	render() {
 		return (
 			<div className='container'>
