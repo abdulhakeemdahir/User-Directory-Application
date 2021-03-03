@@ -11,9 +11,11 @@ class App extends React.Component {
 		this.state = {
 			users: [],
 			search: "",
+			al: "",
 		};
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleFormSubmit = this.handleFormSubmit.bind(this);
+		this.handleSort = this.handleSort.bind(this);
 		this.searchUsers = this.searchUsers.bind(this);
 	}
 
@@ -48,7 +50,9 @@ class App extends React.Component {
 		event.preventDefault();
 		this.searchUsers(String(this.state.search));
 		console.log(this.state.search);
+	}
 
+	handleSort() {
 		let filteredUsers = this.state.users;
 		if (this.state.search)
 			filteredUsers = this.state.users.filter(u =>
@@ -56,6 +60,20 @@ class App extends React.Component {
 			);
 		console.log(filteredUsers);
 		this.setState({ users: filteredUsers });
+
+		let sortedUsers;
+		if (this.state.al === "az") {
+			console.log("sort");
+			sortedUsers = this.state.users.sort((a, b) =>
+				a.name.first > b.name.first ? 1 : -1
+			);
+			this.setState({ users: sortedUsers });
+		} else {
+			sortedUsers = this.state.users.sort((a, b) =>
+				a.name.first < b.name.first ? 1 : -1
+			);
+			this.setState({ users: sortedUsers });
+		}
 	}
 
 	render() {
@@ -64,6 +82,8 @@ class App extends React.Component {
 				<Header />
 				<SearchForm
 					value={this.state.search}
+					valueAL={this.state.al}
+					handleSort={this.handleSort}
 					handleInputChange={this.handleInputChange}
 					handleFormSubmit={this.handleFormSubmit}
 				/>
