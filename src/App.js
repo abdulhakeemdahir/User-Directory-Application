@@ -38,8 +38,6 @@ class App extends React.Component {
 	handleInputChange(event) {
 		const value = event.target.value;
 		const name = event.target.name;
-
-		// console.log(this);
 		this.setState({
 			[name]: value,
 		});
@@ -49,30 +47,30 @@ class App extends React.Component {
 	handleFormSubmit(event) {
 		event.preventDefault();
 		this.searchUsers(String(this.state.search));
-		console.log(this.state.search);
+		let filteruser = this.state.users;
+		if (this.state.search)
+			filteruser = this.state.users.filter(u =>
+				u.name.first.startsWith(this.state.search)
+			);
+		console.log(filteruser);
+		this.setState({ users: filteruser });
 	}
 
 	handleSort() {
-		let filteredUsers = this.state.users;
-		if (this.state.search)
-			filteredUsers = this.state.users.filter(u =>
-				u.name.first.startsWith(this.state.search)
-			);
-		console.log(filteredUsers);
-		this.setState({ users: filteredUsers });
-
-		let sortedUsers;
+		let sortUser;
+		// this.setState({ al: "" });
 		if (this.state.al === "az") {
-			console.log("sort");
-			sortedUsers = this.state.users.sort((a, b) =>
-				a.name.first > b.name.first ? 1 : -1
-			);
-			this.setState({ users: sortedUsers });
-		} else {
-			sortedUsers = this.state.users.sort((a, b) =>
+			sortUser = this.state.users.sort((a, b) =>
 				a.name.first < b.name.first ? 1 : -1
 			);
-			this.setState({ users: sortedUsers });
+			this.setState({ users: sortUser, al: "za" });
+			console.log(this.state.al);
+		} else {
+			sortUser = this.state.users.sort((a, b) =>
+				a.name.first > b.name.first ? 1 : -1
+			);
+			this.setState({ users: sortUser, al: "az" });
+			console.log(this.state.al);
 		}
 	}
 
