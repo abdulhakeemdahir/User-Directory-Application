@@ -19,12 +19,7 @@ function SearchForm(props) {
 					Search
 				</button>
 				<section className='card my-3'>
-					<select
-						// name='al'
-						// value={props.valueAL}
-						onChange={props.handleSort}
-						className='dropdown-item'
-					>
+					<select onChange={props.handleSort} className='dropdown-item'>
 						<option className='dropdown-item'>Select Sort</option>
 						<option value='az' className='dropdown-item'>
 							A to Z

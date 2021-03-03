@@ -64,13 +64,11 @@ class App extends React.Component {
 				a.name.first < b.name.first ? 1 : -1
 			);
 			this.setState({ users: sortUser, al: "za" });
-			console.log(this.state.al);
 		} else {
 			sortUser = this.state.users.sort((a, b) =>
 				a.name.first > b.name.first ? 1 : -1
 			);
 			this.setState({ users: sortUser, al: "az" });
-			console.log(this.state.al);
 		}
 	}
 
