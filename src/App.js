@@ -43,7 +43,6 @@ class App extends React.Component {
 		this.setState({
 			[name]: value,
 		});
-		this.searchUsers(String(this.state.search));
 		let filteruser = this.state.users;
 		if (this.state.search)
 			filteruser = this.state.users.filter(u =>
@@ -58,7 +57,6 @@ class App extends React.Component {
 	// When the form is submitted, search the RandomUsers API for the value of `this.state.search`
 	handleFormSubmit(event) {
 		event.preventDefault();
-		this.searchUsers(String(this.state.search));
 		let filteruser = this.state.users;
 		if (this.state.search)
 			filteruser = this.state.users.filter(u =>
