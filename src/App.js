@@ -15,28 +15,28 @@ class App extends React.Component {
 	}
 
 	componentDidMount() {
-		this.searchUsers("10");
+		this.searchUsers("11");
 	}
 
-	searchUsers = query => {
+	searchUsers(query) {
 		API.getUsers(query)
-			.then(res => this.setState({ result: res.data }))
+			.then(res => this.setState({ users: res.data.results }))
 			.catch(err => console.log(err));
-	};
+	}
 
-	handleInputChange = event => {
+	handleInputChange(event) {
 		const value = event.target.value;
 		const name = event.target.name;
 		this.setState({
 			[name]: value,
 		});
-	};
+	}
 
 	// When the form is submitted, search the OMDB API for the value of `this.state.search`
-	handleFormSubmit = event => {
+	handleFormSubmit(event) {
 		event.preventDefault();
 		this.searchMovies(this.state.search);
-	};
+	}
 
 	render() {
 		return (
