@@ -11,7 +11,7 @@ function Body({ users }) {
 									<th scope='col'>Image</th>
 									<th scope='col'>First Name</th>
 									<th scope='col'>Last Name</th>
-									<th scope='col'>Nationality</th>
+									<th scope='col'>Nat.</th>
 								</tr>
 							</thead>
 							<tbody>
