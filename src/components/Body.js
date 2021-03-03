@@ -1,19 +1,14 @@
-function Body() {
-    return (
-			<div className='card'>
-				<div className='card-body'>
-					<h5 className='card-title'>Special title treatment</h5>
-					<p className='card-text'>
-						With supporting text below as a natural lead-in to additional
-						content.
-					</p>
-					<a href='home' className='btn btn-primary'>
-						Go somewhere
-					</a>
-				</div>
+function Body({ users }) {
+	return (
+		<div className='card'>
+			<div className='card-body'>
+				<h5 className='card-title'>Special title treatment</h5>
+				{users.map(user => (
+					<p className='card-text'>{user.name.first}</p>
+				))}
 			</div>
-		);
+		</div>
+	);
 }
-
 
 export default Body;
