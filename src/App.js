@@ -41,6 +41,16 @@ class App extends React.Component {
 		this.setState({
 			[name]: value,
 		});
+		this.searchUsers(String(this.state.search));
+		let filteruser = this.state.users;
+		if (this.state.search)
+			filteruser = this.state.users.filter(u =>
+				u.name.first.startsWith(this.state.search)
+			);
+		this.setState({ users: filteruser });
+		if (value === "") {
+			this.getUsers("25");
+		}
 	}
 
 	// When the form is submitted, search the RandomUsers API for the value of `this.state.search`
@@ -52,13 +62,11 @@ class App extends React.Component {
 			filteruser = this.state.users.filter(u =>
 				u.name.first.startsWith(this.state.search)
 			);
-		console.log(filteruser);
 		this.setState({ users: filteruser });
 	}
 
 	handleSort() {
 		let sortUser;
-		// this.setState({ al: "" });
 		if (this.state.al === "az") {
 			sortUser = this.state.users.sort((a, b) =>
 				a.name.first < b.name.first ? 1 : -1
