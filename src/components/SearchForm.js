@@ -13,7 +13,7 @@ function SearchForm(props) {
 					name='search'
 					type='text'
 					className='form-control'
-					placeholder='Search For a User by First Name [Case Sensitive]'
+					placeholder='Search For a User [Case Sensitive]'
 					id='search'
 				/>
 				<br />

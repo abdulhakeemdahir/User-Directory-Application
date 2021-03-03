@@ -49,8 +49,13 @@ class App extends React.Component {
 				u.name.first.startsWith(this.state.search)
 			);
 		this.setState({ users: filteruser });
+		if (this.state.search)
+			filteruser = this.state.users.filter(u =>
+				u.name.last.startsWith(this.state.search)
+			);
+		this.setState({ users: filteruser });
 		if (value === "") {
-			this.getUsers("25");
+			this.getUsers("50");
 		}
 	}
 
