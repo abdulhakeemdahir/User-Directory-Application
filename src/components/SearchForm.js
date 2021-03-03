@@ -11,12 +11,18 @@ function SearchForm(props) {
 					name='search'
 					type='text'
 					className='form-control'
-					placeholder='Search For a User by First Name'
+					placeholder='Search For a User by First Name [Case Sensitive]'
 					id='search'
 				/>
 				<br />
 				<button onClick={props.handleFormSubmit} className='btn btn-primary'>
 					Search
+				</button>
+				<button
+					onClick={() => window.location.reload(false)}
+					className='btn btn-warning mx-3'
+				>
+					Reset: Search
 				</button>
 				<section className='card my-3'>
 					<select onChange={props.handleSort} className='dropdown-item'>
