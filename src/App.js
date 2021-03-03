@@ -1,7 +1,9 @@
 import Body from "./components/Body";
 import React from "react";
 import Header from "./components/Header";
-import testUsers from "./utlis/testdata.json";
+// import testUsers from "./utlis/testdata.json";
+import API from "./utlis/API";
+import SearchForm from "./components/SearchForm";
 
 class App extends React.Component {
 	constructor(props) {
@@ -11,13 +13,13 @@ class App extends React.Component {
 			search: "",
 		};
 	}
-	// When this component mounts, search for the movie "The Matrix"
+
 	componentDidMount() {
-		this.searchUsers();
+		this.searchUsers("10");
 	}
 
 	searchUsers = query => {
-		API.search(query)
+		API.getUsers(query)
 			.then(res => this.setState({ result: res.data }))
 			.catch(err => console.log(err));
 	};
