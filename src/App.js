@@ -44,12 +44,12 @@ class App extends React.Component {
 			[name]: value,
 		});
 		let filteruser = [...this.state.users];
-		if (this.state.search)
+		if (this.state.search) {
 			filteruser = this.state.users.filter(u =>
 				u.name.first.startsWith(this.state.search)
 			);
-		this.setState({ users: filteruser });
-		if (this.state.search)
+			this.setState({ users: filteruser });
+		} else if (this.state.search)
 			filteruser = this.state.users.filter(u =>
 				u.name.last.startsWith(this.state.search)
 			);
