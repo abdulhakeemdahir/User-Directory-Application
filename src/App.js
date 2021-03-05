@@ -18,21 +18,14 @@ class App extends React.Component {
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleFormSubmit = this.handleFormSubmit.bind(this);
 		this.handleSort = this.handleSort.bind(this);
-		this.searchUsers = this.searchUsers.bind(this);
 	}
 	// Mounted my initial component
 	componentDidMount() {
-		this.getUsers("25");
+		this.getUsers();
 	}
 	// API request to get Random users
-	getUsers(query) {
-		API.getUsers(query)
-			.then(res => this.setState({ users: res.data.results }))
-			.catch(err => console.log(err));
-	}
-	// Funciton to search users
-	searchUsers(query) {
-		API.searchName(query)
+	getUsers() {
+		API.getUsers()
 			.then(res => this.setState({ users: res.data.results }))
 			.catch(err => console.log(err));
 	}
@@ -48,19 +41,9 @@ class App extends React.Component {
 			let values = Object.values(user).join("").toLowerCase();
 			return values.indexOf(value.toLowerCase()) !== -1;
 		});
-
-		// if (this.state.search) {
-		// 	filteruser = this.state.users.filter(u =>
-		// 		u.name.first.startsWith(this.state.search)
-		// 	);
-		// 	this.setState({ users: filteruser });
-		// } else if (this.state.search)
-		// 	filteruser = this.state.users.filter(u =>
-		// 		u.name.last.startsWith(this.state.search)
-		// 	);
 		this.setState({ users: filterList });
 		if (value === "") {
-			this.getUsers("50");
+			this.getUsers();
 		}
 	}
 
@@ -91,7 +74,6 @@ class App extends React.Component {
 	}
 	// Render function for React
 	render() {
-		console.log(this.state);
 		return (
 			<div className='container'>
 				<Header />
