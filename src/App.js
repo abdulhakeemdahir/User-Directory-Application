@@ -44,16 +44,21 @@ class App extends React.Component {
 			[name]: value,
 		});
 		let filteruser = [...this.state.users];
-		if (this.state.search) {
-			filteruser = this.state.users.filter(u =>
-				u.name.first.startsWith(this.state.search)
-			);
-			this.setState({ users: filteruser });
-		} else if (this.state.search)
-			filteruser = this.state.users.filter(u =>
-				u.name.last.startsWith(this.state.search)
-			);
-		this.setState({ users: filteruser });
+		const filterList = filteruser.filter(user => {
+			let values = Object.values(user).join("").toLowerCase();
+			return values.indexOf(value.toLowerCase()) !== -1;
+		});
+
+		// if (this.state.search) {
+		// 	filteruser = this.state.users.filter(u =>
+		// 		u.name.first.startsWith(this.state.search)
+		// 	);
+		// 	this.setState({ users: filteruser });
+		// } else if (this.state.search)
+		// 	filteruser = this.state.users.filter(u =>
+		// 		u.name.last.startsWith(this.state.search)
+		// 	);
+		this.setState({ users: filterList });
 		if (value === "") {
 			this.getUsers("50");
 		}
@@ -86,6 +91,7 @@ class App extends React.Component {
 	}
 	// Render function for React
 	render() {
+		console.log(this.state);
 		return (
 			<div className='container'>
 				<Header />
