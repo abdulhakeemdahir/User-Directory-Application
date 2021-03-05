@@ -12,7 +12,7 @@ class App extends React.Component {
 		this.state = {
 			users: [],
 			search: "",
-			al: "",
+			al: "az",
 		};
 		// Binded This to all of my methods
 		this.handleInputChange = this.handleInputChange.bind(this);

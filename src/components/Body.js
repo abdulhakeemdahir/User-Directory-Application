@@ -18,7 +18,11 @@ function Body({ users }) {
 							<tbody>
 								<tr>
 									<td>
-										<img src={user.picture.thumbnail} alt='person imge' />
+										<img
+											src={user.picture.thumbnail}
+											alt='person imge'
+											className='rounded'
+										/>
 									</td>
 									<td>{user.name.first}</td>
 									<td>{user.name.last}</td>
