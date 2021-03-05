@@ -11,6 +11,7 @@ class App extends React.Component {
 		super(props);
 		this.state = {
 			users: [],
+			filteredUsers: [],
 			search: "",
 			al: "az",
 		};
@@ -26,7 +27,12 @@ class App extends React.Component {
 	// API request to get Random users
 	getUsers() {
 		API.getUsers()
-			.then(res => this.setState({ users: res.data.results }))
+			.then(res =>
+				this.setState({
+					users: res.data.results,
+					filteredUsers: res.data.results,
+				})
+			)
 			.catch(err => console.log(err));
 	}
 	// Function to search users by input
@@ -36,14 +42,14 @@ class App extends React.Component {
 		this.setState({
 			[name]: value,
 		});
-		let filteruser = [...this.state.users];
-		const filterList = filteruser.filter(user => {
+		const filterList = this.state.filteredUsers.filter(user => {
 			let values = Object.values(user).join("").toLowerCase();
 			return values.indexOf(value.toLowerCase()) !== -1;
 		});
-		this.setState({ users: filterList });
+		this.setState({ filteredUsers: filterList });
 		if (value === "") {
-			this.getUsers();
+			console.log(this.state.users);
+			this.setState({ filteredUsers: this.state.users });
 		}
 	}
 
@@ -84,7 +90,7 @@ class App extends React.Component {
 					handleInputChange={this.handleInputChange}
 					handleFormSubmit={this.handleFormSubmit}
 				/>
-				<Body users={this.state.users} />
+				<Body users={this.state.filteredUsers} />
 			</div>
 		);
 	}
