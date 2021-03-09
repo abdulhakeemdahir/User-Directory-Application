@@ -13,7 +13,7 @@ class App extends React.Component {
 			users: [],
 			filteredUsers: [],
 			search: "",
-			al: "az",
+			sorted: false,
 		};
 		// Binded This to all of my methods
 		this.handleInputChange = this.handleInputChange.bind(this);
@@ -66,16 +66,13 @@ class App extends React.Component {
 	// Function to sort users
 	handleSort() {
 		let sortUser;
-		if (this.state.al === "az") {
+		if (!this.state.sorted) {
 			sortUser = this.state.users.sort((a, b) =>
-				a.name.first < b.name.first ? 1 : -1
+				a.name.first < b.name.first ? -1 : 1
 			);
-			this.setState({ users: sortUser, al: "za" });
+			this.setState({ users: sortUser, sorted: true });
 		} else {
-			sortUser = this.state.users.sort((a, b) =>
-				a.name.first > b.name.first ? 1 : -1
-			);
-			this.setState({ users: sortUser, al: "az" });
+			this.setState({ users: this.state.users.reverse() });
 		}
 	}
 	// Render function for React

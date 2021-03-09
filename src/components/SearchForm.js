@@ -31,7 +31,7 @@ function SearchForm(props) {
 				{/* Sort selections */}
 				<section className='card my-3'>
 					<select onChange={props.handleSort} className='dropdown-item'>
-						{/* <option className='dropdown-item'>Select Sort</option> */}
+						<option className='dropdown-item'>Select Sort</option>
 						<option value='az' className='dropdown-item'>
 							A to Z
 						</option>
